@@ -1,0 +1,40 @@
+version: "3"
+services:
+  database1:
+    build:
+      context: ./database/
+    hostname: database1
+    container_name: database1 
+    volumes:
+      - database:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=chatApp
+    ports:
+      - "5432:5432"
+    restart: always
+
+  chatapplication:
+    build:
+      context: .
+    hostname: chatapp1
+    container_name: chatapplication
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database1
+    restart: always
+
+  webserver:
+    image: 296838539158.dkr.ecr.ap-south-1.amazonaws.com/chatapplication:nginx
+    hostname: nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - chatapplication
+    restart: always
+
+volumes:
+  database:

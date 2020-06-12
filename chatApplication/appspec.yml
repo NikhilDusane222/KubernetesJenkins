@@ -1,0 +1,19 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /chatApplication
+
+hooks:
+  BeforeInstall:
+    - location: Dependency_Scripts/rmBeforeInstall.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: Dependency_Scripts/installDependency.sh
+      timeout: 600
+      runas: root
+  ApplicationStart:
+    - location: Dependency_Scripts/startApplication.sh
+      timeout: 600
+      runas: root

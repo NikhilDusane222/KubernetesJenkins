@@ -1,0 +1,7 @@
+CREATE DATABASE chatApp;
+
+CREATE USER postgres WITH PASSWORD 'admin123';
+
+GRANT ALL PRIVILEGES ON DATABASE "chatApp" to postgres;
+
+
