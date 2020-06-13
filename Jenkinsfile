@@ -18,11 +18,11 @@ pipeline {
 				cd dockerpipeline/
 				 $(aws ecr get-login --registry-ids 296838539158 --no-include-email --region  ap-south-1)
 				#docker-compose down 
-				docker stop $(docker ps -a -q)
-				docker rm $(docker ps -a -q)
+				docker stop chatapplication
+				docker rm chatapplication
 				docker rmi -f 296838539158.dkr.ecr.ap-south-1.amazonaws.com/chatapplication:chatapp
-				docker-compose up -d
-				#docker build -t chat .
+				#docker-compose up -d
+				docker build -t chatapp .
 				'
 				'''
 			}
@@ -32,7 +32,7 @@ pipeline {
 			steps { 
 				sh ''' #! /bin/bash
 				ssh -i /var/lib/jenkins/.ssh/id_rsa root@13.233.230.62 '
-				docker tag dockerpipeline_chatapplication 296838539158.dkr.ecr.ap-south-1.amazonaws.com/chatapplication:chatapp
+				docker tag dockerpipeline_chatapp 296838539158.dkr.ecr.ap-south-1.amazonaws.com/chatapplication:chatapp
 				docker push 296838539158.dkr.ecr.ap-south-1.amazonaws.com/chatapplication:chatapp
 				'
 				'''
