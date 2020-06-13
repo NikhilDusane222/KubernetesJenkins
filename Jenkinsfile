@@ -28,6 +28,19 @@ pipeline {
 			}
 		}
  
+	 stage('Push Image') {
+			steps { 
+				sh ''' #! /bin/bash
+				ssh -i /var/lib/jenkins/.ssh/id_rsa root@52.66.240.187 '
+				docker tag chatapp13_chat 760496128264.dkr.ecr.ap-south-1.amazonaws.com/chatapp:chatapp13_chat
+				docker push 760496128264.dkr.ecr.ap-south-1.amazonaws.com/chatapp:chatapp13_chat
+				#docker tag chat:latest 760496128264.dkr.ecr.ap-south-1.amazonaws.com/chatapp:chat
+				#docker push 760496128264.dkr.ecr.ap-south-1.amazonaws.com/chatapp:chat
+				'
+				'''
+			}
+		}	
+		
          stage('Deploy') { 
                steps {
                  sh ''' #! /bin/bash 
