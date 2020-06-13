@@ -32,7 +32,7 @@ pipeline {
 			steps { 
 				sh ''' #! /bin/bash
 				ssh -i /var/lib/jenkins/.ssh/id_rsa root@13.233.230.62 '
-				docker tag chatapp 296838539158.dkr.ecr.ap-south-1.amazonaws.com/chatapplication:chatapp
+				docker tag dockerpipeline_chatapplication 296838539158.dkr.ecr.ap-south-1.amazonaws.com/chatapplication:chatapp
 				docker push 296838539158.dkr.ecr.ap-south-1.amazonaws.com/chatapplication:chatapp
 				'
 				'''
