@@ -42,7 +42,7 @@ pipeline {
          stage('Deploy') { 
                steps {
                     sh ''' #! /bin/bash
-				ssh -i /var/lib/jenkins/.ssh/id_rsa ubuntu@13.233.230.62 '
+				ssh -i /var/lib/jenkins/.ssh/id_rsa ubuntu@13.233.162.19 '
 				kubectl delete $(kubectl get po -o=name | grep chat-deployment)
 				'
 				echo Deploy Successfull
